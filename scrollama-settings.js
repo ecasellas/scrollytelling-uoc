@@ -53,6 +53,7 @@ function handleStepEnter(response) {
             toolTipState = 'title';
             if(currentDirection === 'up'){
                 removeEmbassaments();
+                showMap();
             } else if(currentDirection == 'down'){
                 showMap()
             }

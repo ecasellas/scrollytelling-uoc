@@ -101,11 +101,24 @@ function handleMouseOut() {
 // Funció per a ensenyar el mapa, opacity -> 1
 function showMap() {
     svg.transition().duration(50).style("opacity", 1)
+    limitsGroup.append("text")
+    .attr("x", 520)
+    .attr("y", 250)
+    .attr("text-anchor", "end")
+    .html("-1000 mm")
+    .style("opacity", 0)
+    .style("font-size", "90px")
+    .style("font-weight", 700)
+    .style("fill", "LightCoral")
+    .transition()
+    .duration(2000)
+    .style("opacity", 1);
 }
 
 // Funció per a amagar el mapa, opacity -> 0
 function hideMap() {
-    svg.transition().duration(500).style("opacity", 0)
+    svg.transition().duration(800).style("opacity", 0)
+    limitsGroup.transition().duration(800).style("opacity", 0)
 }
 
 // Funció per a afegir els embassaments al mapa
@@ -124,15 +137,19 @@ function addEmbassaments() {
             .duration(150)
             .style("opacity", 0.8);
     });
+
+    limitsGroup.selectAll("text").transition().duration(800).style("opacity", 0)
 }
 
 // Funció per a esborrar els embassament del mapa, opacity -> 0
 function removeEmbassaments() {
     embassamentsGroup.selectAll("path")
         .transition()
-        .duration(500)
+        .duration(800)
         .style("opacity", 0)
         .remove();
+    
+    limitsGroup.selectAll("text").transition().duration(300).style("opacity", 1)
 }
 
 // Funció per a fer un zoom al sistema Sau-Susqueda
@@ -149,8 +166,8 @@ function zoomInSauSusqueda() {
 // Funció per a afegir el text de Sau-Susqueda
 function addTextSauSusqueda() {
     // Regulem el paràmetre opacity
-    dadesGroup.style("opacity", 0.0).transition(2500).style("opacity", 0.8);
-    embassamentsGroup.transition(2500).style("opacity", 1)
+    dadesGroup.style("opacity", 0.0).transition().duration(300).style("opacity", 0.8);
+    embassamentsGroup.transition().duration(300).style("opacity", 1)
 
     // Afegim el text, segurament hi ha una manera més compacta de fer-ho...
     dadesGroup.append("text")
@@ -286,8 +303,8 @@ function zoomOutSauSusqueda() {
 // Funció per a afegir la gràfica d'evolució temporal
 function addEvolucioTemporal() {
     // Ajustem el paràmetre opacity
-    evolucioGroup.style("opacity", 0).transition(5500).style("opacity", 0.8)
-    embassamentsGroup.style("opacity", 1).transition(5500).style("opacity", 0)
+    evolucioGroup.style("opacity", 0).transition().duration(800).style("opacity", 0.8)
+    embassamentsGroup.style("opacity", 1).transition().duration(800).style("opacity", 0)
 
     // Carreguem les dades de precentatge de volum embassat
     d3.json("data/dades_conjuntes.json").then(function (lineChartData) {
@@ -326,7 +343,8 @@ function addEvolucioTemporal() {
             .attr("stroke", "steelblue")
             .attr("stroke-width", 2)
             .style("opacity", 0)
-            .transition(5500)
+            .transition()
+            .duration(800)
             .style("opacity", 1);
         // S'afegeix la línia 2 al grup evolució
         evolucioGroup.append("path")
@@ -337,7 +355,8 @@ function addEvolucioTemporal() {
             .attr("stroke-width", 2)
             .style("z-index", 1)
             .style("opacity", 0)
-            .transition(5500)
+            .transition()
+            .duration(800)
             .style("opacity", 1);
 
         // Es dibuixa l'eix X
@@ -345,14 +364,16 @@ function addEvolucioTemporal() {
             .attr("transform", `translate(0, ${height})`)
             .call(d3.axisBottom(xScale))
             .style("opacity", 0)
-            .transition(5500)
+            .transition()
+            .duration(800)
             .style("opacity", 1);
 
         // Es dibuixa l'eix Y
         evolucioGroup.append("g")
             .call(d3.axisLeft(yScale))
             .style("opacity", 0)
-            .transition(5500)
+            .transition()
+            .duration(800)
             .style("opacity", 1);
 
         // S'afegeix l'etiqueta de l'eix Y
@@ -375,7 +396,8 @@ function addEvolucioTemporal() {
             .attr("height", 18)
             .attr("fill", "steelblue")
             .style("opacity", 0)
-            .transition(2500)
+            .transition()
+            .duration(800)
             .style("opacity", 1);;
 
         legend.append("text")
@@ -385,7 +407,8 @@ function addEvolucioTemporal() {
             .style("text-anchor", "start")
             .text("Susqueda")
             .style("opacity", 0)
-            .transition(2500)
+            .transition()
+            .duration(800)
             .style("opacity", 1);
 
         legend.append("rect")
@@ -394,7 +417,8 @@ function addEvolucioTemporal() {
             .attr("fill", "orange")
             .attr("y", 20)
             .style("opacity", 0)
-            .transition(2500)
+            .transition()
+            .duration(800)
             .style("opacity", 1);
 
         legend.append("text")
@@ -404,12 +428,14 @@ function addEvolucioTemporal() {
             .style("text-anchor", "start")
             .text("Sau")
             .style("opacity", 0)
-            .transition(5500)
+            .transition()
+            .duration(800)
             .style("opacity", 1);
     });
 }
 
 // Funció per a amagar l'evolució temporal, opacity -> 0
 function removeEvolucioTemporal() {
-    evolucioGroup.style("opacity", 1).transition(500).style("opacity", 0)
+    evolucioGroup.style("opacity", 1).transition().duration(800).style("opacity", 0)
 }
+
