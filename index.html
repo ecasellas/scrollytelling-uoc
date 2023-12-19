@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <title>Scrollytelling with Scrollama and D3 (demo)</title>
+      <meta name="description" content="PAC 3 de l'assignatura de Visualització de Dades del Màster de Ciència de Dades de la UOC." />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet"> 
+      <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <main>
+      
+      <section class="generic" id="intro">
+        <h1>
+            La sequera a Catalunya i l'estat dels embassaments
+        </h1>
+        <p>
+            A Catalunya fa temps que no hi plou com cal i es troba immersa en la sequera més greu registrada mai en època instrumental
+            tal com informa el Servei Meteorològic de Catalunya en una <a href=https://www.meteo.cat/wpweb/16112023_nt_smc_context_sequera>nota tècnica</a>.
+            És des del temporal Glòria, el gener del 2020, que el país es troba per sota la mitjana de precipitació acumulada. L'absència persistent de 
+            pluja ha provocat que moltes de les conques de Catalunya estiguin en Excepcionalitat, Preemergència o, fins i tot, en situació d'Emergència.
+        </p>
+        <p>
+            Aquí coneixerem quins són els embassaments que disposa Catalunya i la seva localització, així com l'estat del sistema d'embassaments
+            Sau-Susqueda-El Pasteral. Aquest és crític per a l'abastiment d'aigua a l'Àrea Metropolitana de Barcelona on hi viuen més de 5 milions de persones.
+        </p>
+        <p class="seperator">
+        </p>
+      </section>
+
+      <section id="scrolly">
+          
+        <figure>
+          <div class="viz" id="map-container"></div>
+        </figure>
+
+        <article>
+            
+            <div class="step" data-step="1">
+              
+                <h2>Territori</h2>
+                <p>
+                    La precipitació mitjana anual a Catalunya té oscil·la entre els 320 mm i els 1560 mm 
+                    en funció del punt del territori considerat. Doncs bé, des del novembre del 2020 fins a l'octubre del 2023, hi ha 
+                    zones del país amb un <span class="label red">dèficit de precipitació</span> de més de <span class="label red">1000 mm</span> d'acumulació de pluja. 
+                </p>
+            </div>
+            
+            <div class="step" data-step="2">
+                <h2>Embassa-ments</h2>
+                <p>
+                    Períodes de sequera n'hi ha hagut sempre i una eina per poder-les gestionar són els embassaments. Catalunya disposa de 30 embassaments,
+                    uns gestionats per l'Agència Catalana de l'Aigua (ACA, conques internes) i els del riu Ebre gestionats per la Confederació Hidrogràfica
+                    de l'Ebre (CHE).
+                </p>
+            </div>
+
+            <div class="step" data-step="3">
+                <h2>Sau-Susqueda-El Pasteral</h2>
+                <p>
+                    Aquest sistema d'embassaments proporciona aigua a l'AMB amb una capacitat total de 399.56 hm<sup style="font-size:10px">3</sup>.
+                    Ara bé, a data de 16 de desembre de 2023 mostren uns volums embassats molt pobres.
+                </p>
+            </div>
+
+            <div class="step" data-step="4">
+                <h2>Evolució temporal</h2>
+                <p>
+                    Des del setembre que el sistema d'embassaments ha anat alliberant aigua, però no n'ha entrat. El que entra a Susqueda és el que surt de Sau.
+                </p>
+            </div>
+        </article>
+
+      </section>
+
+      <section class="generic" id="footer">
+        <p>
+            <i>
+                Dades del mapa obtingudes de l'<a href="https://www.icgc.cat/ca/Descarregues/Cartografia-vectorial/Divisions-administratives">ICGC</a>,
+                dels embassaments de l'<a href="https://analisi.transparenciacatalunya.cat/Medi-Ambient/Masses-d-aigua-Embassaments/5jtz-br5i/data_preview">ACA</a>,
+                i les dades de volum embassat, també de l'<a href="https://analisi.transparenciacatalunya.cat/Medi-Ambient/Quantitat-d-aigua-als-embassaments-de-les-Conques-/gn9e-3qhr/data_preview">ACA</a>.
+                
+                S'ha utilitzat com a plantilla i model, l'scrollytelling d'Erik Driessen a <a href="https://github.com/edriessen/scrollytelling-scrollama-d3-demo">github</a>.
+            </i>  
+        </p>
+      </section>
+
+    </main>
+
+    <script src="src/d3.5.9.1.min.js"></script>
+    <script src="src/intersection-observer.js"></script>
+    <script src="src/stickyfill.min.js"></script>
+    <script src="src/scrollama.min.js"></script>
+    <script src="d3-animations.js"></script>
+    <script src="scrollama-settings.js"></script>
+  </body>
+</html>
