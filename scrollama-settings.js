@@ -80,9 +80,18 @@ function handleStepEnter(response) {
             }
             break;
         case 3:
-                removeTextSauSusqueda();    
-                addEvolucioTemporal();            
+            if(currentDirection == "down"){
+                removeTextSauSusqueda();
+                hideEmbassaments();    
+                addEvolucioTemporal();           
+            } else if(currentDirection == "up"){
+                removeImage()
+                addEvolucioTemporal();
+            }
+                
             break;
+        case 4:
+                addImage();
         default:
             break;
     }

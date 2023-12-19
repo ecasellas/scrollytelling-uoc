@@ -304,7 +304,6 @@ function zoomOutSauSusqueda() {
 function addEvolucioTemporal() {
     // Ajustem el paràmetre opacity
     evolucioGroup.style("opacity", 0).transition().duration(800).style("opacity", 0.8)
-    embassamentsGroup.style("opacity", 1).transition().duration(800).style("opacity", 0)
 
     // Carreguem les dades de precentatge de volum embassat
     d3.json("data/dades_conjuntes.json").then(function (lineChartData) {
@@ -434,8 +433,33 @@ function addEvolucioTemporal() {
     });
 }
 
+// Funció per a amagar els embassaments
+function hideEmbassaments() {
+    embassamentsGroup.style("opacity", 1).transition().duration(500).style("opacity", 0)
+}
+
 // Funció per a amagar l'evolució temporal, opacity -> 0
 function removeEvolucioTemporal() {
     evolucioGroup.style("opacity", 1).transition().duration(800).style("opacity", 0)
 }
 
+// Funció per a afegir la imatge de sequera
+function addImage() {
+    svg.append("image")
+        .attr("xlink:href", "data/nocaudelcel.jpg")
+        .attr("width", 480)
+        .attr("height", 480)
+        .attr("x", 65) 
+        .attr("y", 0)
+        .style("opacity", 0)
+        .transition()
+        .duration(500)
+        .style("opacity", 1);
+    
+    evolucioGroup.transition().duration(500).style("opacity", 0)
+}
+
+// Funció per a amagar la imatge de sequera
+function removeImage() {
+    svg.selectAll("image").transition().duration(500).style("opacity", 0)
+}
